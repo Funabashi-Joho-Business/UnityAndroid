@@ -1,11 +1,6 @@
 package ac.jp.chiba_fjb.unity01;
 
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -41,6 +36,9 @@ public class UnityFragment extends Fragment implements View.OnClickListener {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         UnityPlayer unityPlayer = ((UnityPlayerActivity)getActivity()).getUnityPlayer();
+        ViewGroup parent = (ViewGroup)unityPlayer.getParent();
+        if(parent != null)
+            parent.removeView(unityPlayer);
         ((FrameLayout)view.findViewById(R.id.unity)).addView(unityPlayer);
 
         view.findViewById(R.id.button2).setOnClickListener(this);
